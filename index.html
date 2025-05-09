@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>El desafío del productor agropecuario</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; background-color: #f4f4f4; }
+    .screen { display: none; }
+    .active { display: block; }
+    button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px; transition: background-color 0.3s; }
+    button:hover { background-color: #3e8e41; }
+    .container { background: white; padding: 20px; border-radius: 10px; max-width: 700px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .items { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+    .item img { max-width: 80px; height: auto; }
+    h2, h3 { color: #333; }
+    .river { background-color: #b3d9ff; padding: 10px; margin: 15px 0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="inicio" class="screen active">
+      <h2>El desafío del productor agropecuario</h2>
+      <p>Debes cruzar un río con los siguientes elementos:</p>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+          <p>Vaca</p>
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+          <p>Semillas</p>
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+          <p>Agua</p>
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <p>Solo puedes llevar un elemento a la vez en tu bote. Ten cuidado: la vaca come las semillas si se quedan solas, y contamina el agua si queda sola con ella.</p>
+      <button onclick="show('paso1')">Comenzar el desafío</button>
+    </div>
+    
+    <div id="paso1" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <p>¿Qué decides transportar primero?</p>
+      <button onclick="show('paso2-vaca')">Transportar la vaca</button>
+      <button onclick="show('error-semillas')">Transportar las semillas</button>
+      <button onclick="show('error-agua')">Transportar el agua</button>
+    </div>
+    
+    <div id="paso2-vaca" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <p>¿Qué decides hacer ahora?</p>
+      <button onclick="show('paso3-volver')">Volver con el bote vacío</button>
+      <button onclick="show('error-vaca')">Llevar la vaca de regreso</button>
+    </div>
+    
+    <div id="paso3-volver" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <p>¿Qué elemento decides transportar ahora?</p>
+      <button onclick="show('paso4-semillas')">Transportar las semillas</button>
+      <button onclick="show('paso4-agua')">Transportar el agua</button>
+    </div>
+    
+    <div id="paso4-semillas" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+      </div>
+      <p>¿Qué decides hacer ahora?</p>
+      <button onclick="show('error-semillas')">Volver con el bote vacío</button>
+      <button onclick="show('paso5-vaca')">Llevar la vaca de regreso</button>
+      <button onclick="show('error-semillas')">Llevar las semillas de regreso</button>
+    </div>
+    
+    <div id="paso4-agua" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <p>¿Qué decides hacer ahora?</p>
+      <button onclick="show('error-agua')">Volver con el bote vacío</button>
+      <button onclick="show('paso5-vaca-alt')">Llevar la vaca de regreso</button>
+      <button onclick="show('error-agua')">Llevar el agua de regreso</button>
+    </div>
+    
+    <div id="paso5-vaca" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+      </div>
+      <p>¿Qué decides hacer ahora?</p>
+      <button onclick="show('error-agua')">Volver con el bote vacío</button>
+      <button onclick="show('error-agua')">Llevar la vaca</button>
+      <button onclick="show('paso6-agua')">Llevar el agua</button>
+    </div>
+    
+    <div id="paso5-vaca-alt" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <p>¿Qué decides hacer ahora?</p>
+      <button onclick="show('error-semillas')">Volver con el bote vacío</button>
+      <button onclick="show('error-semillas')">Llevar la vaca</button>
+      <button onclick="show('paso6-semillas')">Llevar las semillas</button>
+    </div>
+    
+    <div id="paso6-agua" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <p>Ya casi terminas. ¿Qué decides hacer ahora?</p>
+      <button onclick="show('paso7-vaca')">Llevar la vaca</button>
+      <button onclick="show('error-final')">Volver con el bote vacío</button>
+    </div>
+    
+    <div id="paso6-semillas" class="screen">
+      <h3>Orilla inicial</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+      </div>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <p>Ya casi terminas. ¿Qué decides hacer ahora?</p>
+      <button onclick="show('paso7-vaca')">Llevar la vaca</button>
+      <button onclick="show('error-final')">Volver con el bote vacío</button>
+    </div>
+    
+    <div id="paso7-vaca" class="screen">
+      <h3>¡Lo has logrado!</h3>
+      <div class="river">Río</div>
+      <h3>Orilla opuesta</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+        </div>
+      </div>
+      <h3>🎉 ¡Felicidades!</h3>
+      <p>Has cruzado con éxito los tres elementos sin perder nada.</p>
+      <p>Demostraste ser un productor agropecuario muy hábil.</p>
+      <button onclick="show('inicio')">⭯ Reiniciar</button>
+    </div>
+    
+    <div id="error-semillas" class="screen">
+      <h3>⚠️ ¡Oh no!</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/wheat.png" alt="Semillas">
+          <p>🚫</p>
+        </div>
+      </div>
+      <p>La vaca se comió las semillas mientras no estabas mirando.</p>
+      <button onclick="show('inicio')">⭯ Volver a intentar</button>
+    </div>
+    
+    <div id="error-agua" class="screen">
+      <h3>⚠️ ¡Oh no!</h3>
+      <div class="items">
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/cow.png" alt="Vaca">
+        </div>
+        <div class="item">
+          <img src="https://img.icons8.com/color/96/water.png" alt="Agua">
+          <p>🚫</p>
+        </div>
+      </div>
+      <p>La vaca contaminó el agua mientras no estabas mirando.</p>
+      <button onclick="show('inicio')">⭯ Volver a intentar</button>
+    </div>
+    
+    <div id="error-vaca" class="screen">
+      <h3>⚠️ ¡Error!</h3>
+      <p>¿Por qué llevarías la vaca de regreso tan pronto? Piensa en una mejor estrategia.</p>
+      <button onclick="show('inicio')">⭯ Volver a intentar</button>
+    </div>
+    
+    <div id="error-final" class="screen">
+      <h3>⚠️ ¡Tan cerca!</h3>
+      <p>¿Para qué volver con el bote vacío? Ya casi terminabas el desafío.</p>
+      <button onclick="show('inicio')">⭯ Volver a intentar</button>
+    </div>
+  </div>
+  <script>
+    function show(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+</body>
+</html>
